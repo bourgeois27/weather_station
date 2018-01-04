@@ -39,7 +39,7 @@ void setup() {
   }
   
   Serial.print("DHT11 & BMP180\nm: metric (*C, m)\ni: imperial (*F, ft)\nPlease select desired units by either sending a m or a i\n");
-  //Attendre que l'utilisateur specifie les unites voulues
+  //Wait for user to select desired units
   while(1) {
     while(Serial.available() > 0) {
       units = Serial.read();
@@ -78,7 +78,7 @@ void setup() {
 } //End of void setup()
 
 void loop() {
-  delay(2000); //ajouter un delai de 2 secondes pour permettre un changement des donnees du sensor
+  delay(2000); //add a 2 sec delay to allow sensor data to change
   printWeatherData();
 } // End of void loop()
 
@@ -103,7 +103,7 @@ void printWeatherData() {
     heatIndex = dht.computeHeatIndex(temperature, humidity, false);
   }
   
-  //Affichage des donnees meteo
+  //Print weather data to serial monitor
   Serial.print("Temperature : ");
   Serial.print(temperature, 1);
   Serial.print((units == 'm') ? " *C":" *F");
